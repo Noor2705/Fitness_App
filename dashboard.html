@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dashboard - FitLife</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>FitLife</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#dashboard">Dashboard</a></li>
+                <li><a href="#logout" id="logout">Log Out</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Dashboard Section -->
+    <section id="dashboard" class="dashboard-section">
+        <div class="dashboard-container">
+            <h2>Welcome to Your Dashboard</h2>
+            <div id="userInfo" class="user-info">
+                <!-- User info will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2025 FitLife App. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript for Fetching Data and Log Out -->
+    <script>
+        window.onload = () => {
+            const userData = JSON.parse(localStorage.getItem('user'));
+
+            // Debugging: Log the retrieved user data to check if it is correctly fetched
+            console.log('Retrieved user data from localStorage:', userData);
+
+            if (userData) {
+                // If data is found in localStorage, display it in the dashboard
+                document.getElementById('userInfo').innerHTML = `
+                    <p><strong>Username:</strong> ${userData.username}</p>
+                    <p><strong>Email:</strong> ${userData.email}</p>
+                    <p>${userData.message}</p>
+                `;
+            } else {
+                // If no data is found, show a message
+                document.getElementById('userInfo').innerHTML = `
+                    <p>No user data found. Please log in first.</p>
+                `;
+                // Optionally, redirect to the sign-in page after a delay
+                setTimeout(() => {
+                    window.location.href = 'index.html'; // Redirect to the sign-in page
+                }, 3000);
+            }
+        };
+
+        // Log out functionality
+        document.getElementById('logout').addEventListener('click', () => {
+            // Clear user data from localStorage
+            localStorage.removeItem('user');
+
+            // Redirect to sign-in page
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>

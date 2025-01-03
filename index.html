@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fitness App - Sign Up & Sign In</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Add some styles for the "Get Started" section */
+        #getStartedInfo {
+            display: none;
+            padding: 30px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            margin-top: 30px;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        #getStartedInfo h2 {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        #getStartedInfo ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #getStartedInfo li {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        #getStartedInfo .cta-button {
+            margin-top: 20px;
+            background-color: #28a745;
+            color: #fff;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+
+        #getStartedInfo .cta-button:hover {
+            background-color: #218838;
+        }
+
+        /* Animation for fading in the section */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header id="home">
+        <nav>
+            <div class="logo">
+                <h1>FitLife</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#download">Download</a></li>
+                <li><a href="#signin">Sign In</a></li>
+                <li><a href="#signup">Sign Up</a></li>
+            </ul>
+        </nav>
+        <div class="hero">
+            <h2>Transform Your Body and Mind</h2>
+            <p>Track your workouts, monitor your progress, and stay motivated!</p>
+            <a href="#getStarted" class="cta-button" id="getStartedBtn">Get Started</a>
+        </div>
+    </header>
+
+    <!-- New Section for Getting Started Information -->
+    <section id="getStartedInfo">
+        <h2>How You Can Improve Your Health</h2>
+        <ul>
+            <li><strong>Track Your Workouts:</strong> Monitor your exercise routine, track sets and reps, and make adjustments as you improve.</li>
+            <li><strong>Monitor Your Progress:</strong> Keep an eye on metrics like weight, strength, and endurance over time to see tangible results.</li>
+            <li><strong>Stay Motivated:</strong> Set fitness goals, join a fitness community, and celebrate every achievement, no matter how small.</li>
+            <li><strong>Healthy Eating:</strong> Fuel your body with the right nutrients to maximize your workout performance and recovery.</li>
+            <li><strong>Rest and Recovery:</strong> Don’t underestimate the importance of sleep and rest days—your body needs time to heal and grow stronger.</li>
+        </ul>
+        <a href="#signup" class="cta-button">Join Now and Start Your Fitness Journey</a>
+    </section>
+
+    <!-- Sign Up and Sign In Section in Same Row -->
+    <section id="auth" class="auth-section">
+        <div class="form-container">
+            <div class="form-box" id="signup-box">
+                <h2>Create Your Account</h2>
+                <form id="signupForm">
+                    <label for="signupUsername">Username:</label>
+                    <input type="text" id="signupUsername" name="signupUsername" required placeholder="Enter username">
+
+                    <label for="signupEmail">Email:</label>
+                    <input type="email" id="signupEmail" name="signupEmail" required placeholder="Enter your email">
+
+                    <label for="signupPassword">Password:</label>
+                    <input type="password" id="signupPassword" name="signupPassword" required placeholder="Create a password">
+
+                    <button type="submit" class="cta-button">Sign Up</button>
+                </form>
+            </div>
+
+            <div class="form-box" id="signin-box">
+                <h2>Sign In to Your Account</h2>
+                <form id="signinForm">
+                    <label for="signinEmail">Email:</label>
+                    <input type="email" id="signinEmail" name="signinEmail" required placeholder="Enter your email">
+
+                    <label for="signinPassword">Password:</label>
+                    <input type="password" id="signinPassword" name="signinPassword" required placeholder="Enter your password">
+
+                    <button type="submit" class="cta-button">Sign In</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2025 FitLife App. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript for Animations and Smooth Scroll -->
+    <script>
+        // Smooth Scrolling
+        const smoothScroll = (event) => {
+            if (event.target.tagName === "A") {
+                event.preventDefault();
+                const targetId = event.target.getAttribute("href").substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                window.scrollTo({
+                    top: targetElement.offsetTop - 70,  // Adjust for navigation bar height
+                    behavior: "smooth"
+                });
+            }
+        };
+        document.querySelector('nav').addEventListener('click', smoothScroll);
+
+        // Page Entrance Animations
+        window.onload = () => {
+            document.body.classList.add('page-loaded');
+        };
+
+        // Show "Get Started" information when the button is clicked
+        document.getElementById('getStartedBtn').addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent default link behavior
+
+            // Show the Get Started info section
+            document.getElementById('getStartedInfo').style.display = 'block';
+        });
+
+        // Sign Up and Sign In Form Simulation (basic)
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent actual form submission
+
+            const username = document.getElementById('signupUsername').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+
+            if (username && email && password) {
+                alert('Sign Up Successful! Welcome, ' + username + '!');
+            } else {
+                alert('Please fill out all fields!');
+            }
+        });
+
+        // Sign In Simulation with Data Transfer
+        document.getElementById('signinForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent actual form submission
+
+            const email = document.getElementById('signinEmail').value;
+            const password = document.getElementById('signinPassword').value;
+
+            // Simulate user login and store user data in localStorage
+            if (email && password) {
+                // Store user data
+                const userData = {
+                    username: "JohnDoe",  // Static data for demonstration
+                    email: email,
+                    message: "Welcome back to your fitness journey!"
+                };
+
+                localStorage.setItem('user', JSON.stringify(userData));
+
+                // Redirect to dashboard page
+                window.location.href = 'dashboard.html';
+            } else {
+                alert('Please enter your email and password!');
+            }
+        });
+    </script>
+</body>
+</html>
